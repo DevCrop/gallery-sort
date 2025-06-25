@@ -371,27 +371,28 @@ ENGINE=MyISAM
 
 
 CREATE TABLE `nb_popup` (
-	`no` INT NOT NULL AUTO_INCREMENT,
-	`sitekey` VARCHAR(6) NOT NULL COMMENT '사이트 유니크 키' COLLATE 'utf8mb3_general_ci',
-	`p_title` VARCHAR(50) NOT NULL COMMENT '팝업 제목' COLLATE 'utf8mb3_general_ci',
-	`p_img` VARCHAR(128) NOT NULL COMMENT '팝업 이미지' COLLATE 'utf8mb3_general_ci',
-	`p_target` ENUM('_self','_blank') NULL DEFAULT '_self' COMMENT '링크 오픈 형식' COLLATE 'utf8mb3_general_ci',
-	`p_link` VARCHAR(128) NULL DEFAULT NULL COMMENT '팝업 링크' COLLATE 'utf8mb3_general_ci',
-	`p_view` ENUM('Y','N') NULL DEFAULT 'Y' COMMENT '노출 여부' COLLATE 'utf8mb3_general_ci',
-	`p_left` VARCHAR(4) NULL DEFAULT NULL COMMENT '노출위치(px) 왼쪽으로부터' COLLATE 'utf8mb3_general_ci',
-	`p_top` VARCHAR(4) NULL DEFAULT NULL COMMENT '노출위치(px) 위쪽으로부터' COLLATE 'utf8mb3_general_ci',
-	`p_idx` INT NULL DEFAULT '0' COMMENT '순서',
-	`p_sdate` DATE NULL DEFAULT NULL COMMENT '시작일 - 00 시부터 시작',
-	`p_edate` DATE NULL DEFAULT NULL COMMENT '종료일 - 23시 59분 59초까지',
-	`p_rdate` DATETIME NOT NULL COMMENT '등록일',
-	`p_none_limit` ENUM('N','Y') NULL DEFAULT 'N' COMMENT '기한설정 Y:무기한 N:기한설' COLLATE 'utf8mb3_general_ci',
-	`p_loc` ENUM('P','M') NULL DEFAULT 'P' COMMENT '노출위치 P : PC M : 모받' COLLATE 'utf8mb3_general_ci',
-	PRIMARY KEY (`no`) USING BTREE
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `sitekey` VARCHAR(6) NOT NULL COMMENT '사이트 유니크 키' COLLATE 'utf8mb3_general_ci',
+  `p_title` VARCHAR(50) NOT NULL COMMENT '팝업 제목' COLLATE 'utf8mb3_general_ci',
+  `p_img` VARCHAR(128) NOT NULL COMMENT '팝업 이미지' COLLATE 'utf8mb3_general_ci',
+  `p_target` ENUM('_self','_blank') NULL DEFAULT '_self' COMMENT '링크 오픈 형식' COLLATE 'utf8mb3_general_ci',
+  `p_link` VARCHAR(128) NULL DEFAULT NULL COMMENT '팝업 링크' COLLATE 'utf8mb3_general_ci',
+  `p_is_link` ENUM('Y','N') NOT NULL DEFAULT 'Y' COMMENT '팝업 링크 사용 여부 (Y: 사용, N: 미사용)' COLLATE 'utf8mb3_general_ci',
+  `p_view` ENUM('Y','N') NULL DEFAULT 'Y' COMMENT '노출 여부' COLLATE 'utf8mb3_general_ci',
+  `p_left` VARCHAR(4) NULL DEFAULT NULL COMMENT '노출위치(px) 왼쪽으로부터' COLLATE 'utf8mb3_general_ci',
+  `p_top` VARCHAR(4) NULL DEFAULT NULL COMMENT '노출위치(px) 위쪽으로부터' COLLATE 'utf8mb3_general_ci',
+  `p_idx` INT NULL DEFAULT '0' COMMENT '순서',
+  `p_sdate` DATE NULL DEFAULT NULL COMMENT '시작일 - 00 시부터 시작',
+  `p_edate` DATE NULL DEFAULT NULL COMMENT '종료일 - 23시 59분 59초까지',
+  `p_rdate` DATETIME NOT NULL COMMENT '등록일',
+  `p_none_limit` ENUM('N','Y') NULL DEFAULT 'N' COMMENT '기한설정 Y:무기한 N:기한설' COLLATE 'utf8mb3_general_ci',
+  `p_loc` ENUM('P','M') NULL DEFAULT 'P' COMMENT '노출위치 P : PC M : 모바일' COLLATE 'utf8mb3_general_ci',
+  PRIMARY KEY (`no`) USING BTREE
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=MyISAM
-AUTO_INCREMENT=7
-;
+AUTO_INCREMENT=7;
+
 
 
 CREATE TABLE `nb_request` (
