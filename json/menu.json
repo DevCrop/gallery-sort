@@ -1,0 +1,60 @@
+{
+  "site_name": "HOUSEMAN",
+  "pages": [
+    {
+      "title": "HOUSEMAN 소개",
+      "dirname": "about",
+      "pages": [
+        {
+          "title": "HOUSEMAN소개",
+          "filename": "about"
+        }
+      ]
+    },
+    {
+      "title": "서비스안내",
+      "dirname": "sv",
+      "pages": [
+	{
+          "title": "중소형 빌딩",
+          "filename": "sv-3"
+        },
+	{
+          "title": "중소형 주택",
+          "filename": "sv-4"
+        },
+        {
+          "title": "단기임대",
+          "filename": "sv-1"
+        },
+        {
+          "title": "기업 시설 관리",
+          "filename": "sv-2"
+        },
+        {
+          "title": "비상주 관리사무소",
+          "filename": "sv-5"
+        }
+      ]
+    },
+    {
+      "title": "공실정보",
+      "dirname": "gall",
+      "pages": [
+        {
+          "title": "단기임대",
+         "board_no": "9"
+        },
+
+        {
+          "title": "근생",
+         "board_no": "10"
+        },        
+	{
+          "title": "일반주택",
+         "board_no": "11"
+        }
+      ]
+    }
+  ]
+}
