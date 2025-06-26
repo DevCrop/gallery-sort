@@ -70,16 +70,18 @@ switch ($depthnum) {
                         <span class="no-menu-arrow"><i class="bx bx-chevron-down"></i></span>
                     </span>
                     <ul class="no-menu-sub">
-<!--  						<li class="no-menu-item">
-							<a href="<?=$NO_IS_SUBDIR?>/admin/pages/board/board.manage.list.php" class="no-menu-link <?=$pageActive['board'][0]?>">
-								<span class="no-menu-bullet">
-									<span class="no-menu-bullet-dot"></span>
-								</span>
-								<span class="no-menu-title">게시판 관리</span>
-							</a>
-						</li>  -->
                         <li class="no-menu-item">
-                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/board/board.list.php" class="no-menu-link <?=$pageActive['board'][1]?>">
+                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/board/board.manage.list.php"
+                                class="no-menu-link <?=$pageActive['board'][0]?>">
+                                <span class="no-menu-bullet">
+                                    <span class="no-menu-bullet-dot"></span>
+                                </span>
+                                <span class="no-menu-title">게시판 관리</span>
+                            </a>
+                        </li>
+                        <li class="no-menu-item">
+                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/board/board.list.php"
+                                class="no-menu-link <?=$pageActive['board'][1]?>">
                                 <span class="no-menu-bullet"><span class="no-menu-bullet-dot"></span></span>
                                 <span class="no-menu-title">게시글 관리</span>
                             </a>
@@ -95,13 +97,15 @@ switch ($depthnum) {
                     </span>
                     <ul class="no-menu-sub">
                         <li class="no-menu-item">
-                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/design/banner.list.php" class="no-menu-link <?=$pageActive['design'][0]?>">
+                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/design/banner.list.php"
+                                class="no-menu-link <?=$pageActive['design'][0]?>">
                                 <span class="no-menu-bullet"><span class="no-menu-bullet-dot"></span></span>
                                 <span class="no-menu-title">배너 관리</span>
                             </a>
                         </li>
                         <li class="no-menu-item">
-                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/design/popup.list.php" class="no-menu-link <?=$pageActive['design'][1]?>">
+                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/design/popup.list.php"
+                                class="no-menu-link <?=$pageActive['design'][1]?>">
                                 <span class="no-menu-bullet"><span class="no-menu-bullet-dot"></span></span>
                                 <span class="no-menu-title">팝업 관리</span>
                             </a>
@@ -109,7 +113,7 @@ switch ($depthnum) {
                     </ul>
                 </li>
 
-<!-- 				<li class="no-menu-item <?=$gnbActive_3?>">
+                <!-- 				<li class="no-menu-item <?=$gnbActive_3?>">
 					<a href="<?=$NO_IS_SUBDIR?>/admin/pages/request/request.list.php" class="no-menu-link">
 						<span class="no-menu-icon">
 							<i class="bx bx-phone-call"></i>
@@ -117,7 +121,7 @@ switch ($depthnum) {
 						<span class="no-menu-title">상담문의</span>
 					</a>
 				</li> -->
-				
+
 
                 <li class="no-menu-item <?=$gnbActive[4]?>">
                     <span class="no-menu-link">
@@ -127,26 +131,29 @@ switch ($depthnum) {
                     </span>
                     <ul class="no-menu-sub">
                         <li class="no-menu-item">
-                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/setting/setting.php" class="no-menu-link <?=$pageActive['setting'][0]?>">
+                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/setting/setting.php"
+                                class="no-menu-link <?=$pageActive['setting'][0]?>">
                                 <span class="no-menu-bullet"><span class="no-menu-bullet-dot"></span></span>
                                 <span class="no-menu-title">비밀번호 변경</span>
                             </a>
                         </li>
                         <li class="no-menu-item">
-                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/setting/site.config.php" class="no-menu-link <?=$pageActive['setting'][1]?>">
+                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/setting/site.config.php"
+                                class="no-menu-link <?=$pageActive['setting'][1]?>">
                                 <span class="no-menu-bullet"><span class="no-menu-bullet-dot"></span></span>
                                 <span class="no-menu-title">사이트 정보관리</span>
                             </a>
                         </li>
                         <li class="no-menu-item">
-                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/setting/site.data.list.php" class="no-menu-link <?=$pageActive['setting'][2]?>">
+                            <a href="<?=$NO_IS_SUBDIR?>/admin/pages/setting/site.data.list.php"
+                                class="no-menu-link <?=$pageActive['setting'][2]?>">
                                 <span class="no-menu-bullet"><span class="no-menu-bullet-dot"></span></span>
                                 <span class="no-menu-title">사이트 데이터관리</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                
+
                 <!--<li class="no-menu-item <?=$gnbActive[5]?>">
                     <span class="no-menu-link">
                         <span class="no-menu-icon"><i class="bx bx-bar-chart-square"></i></span>
@@ -181,6 +188,6 @@ switch ($depthnum) {
 </aside>
 
 <script defer>
-    const activatedMenu = document.querySelector('.no-menu-item.active .no-menu-arrow');
-    if (activatedMenu) activatedMenu.classList.add('open');
+const activatedMenu = document.querySelector('.no-menu-item.active .no-menu-arrow');
+if (activatedMenu) activatedMenu.classList.add('open');
 </script>

@@ -5,6 +5,7 @@ $connect = DB::getInstance(); // PDO 인스턴스
 $depthnum = 1;
 $pagenum = 1;
 
+$view_yn = $_REQUEST['view_yn'] ?? '';  
 $search_word = $_REQUEST['search_word'] ?? '';
 $category = $_REQUEST['category'] ?? '';
 $skin = $_REQUEST['skin'] ?? '';
@@ -27,13 +28,17 @@ if ($skin) {
     $params[':skin'] = trim($skin);
 }
 
+if ($view_yn !== '') {
+    $mainqry .= " AND a.view_yn = :view_yn";
+    $params[':view_yn'] = $view_yn;
+}
+
 $page = $_POST['page'] ?? 1;
 $perpage = $_POST['perpage'] ?? 20;
 $listRowCnt = $perpage;
 $listCurPage = $page;
 $count = ($listCurPage - 1) * $listRowCnt;
 
-// Total count query
 $query = "SELECT COUNT(*) AS cnt FROM nb_board_manage a $mainqry";
 
 // phpinfo(); 
@@ -52,7 +57,7 @@ $Page = ceil($totalCnt / $listRowCnt);
 
 // Data fetching query
 // 직접 쿼리에 $count와 $listRowCnt 값을 삽입
-$query = "SELECT a.no, a.title, a.skin, a.regdate, a.top_banner_image, a.contents, 
+$query = "SELECT a.no, a.title, a.skin, a.regdate,  
                  a.view_yn, a.secret_yn, a.sort_no, a.list_size, a.fileattach_yn, 
                  a.fileattach_cnt, a.comment_yn
           FROM nb_board_manage a
@@ -131,24 +136,24 @@ include_once "../../inc/admin.js.php";
                                         <div class="no-radio-form no-list">
                                             <label for="input1">
                                                 <div class="no-radio-box">
-                                                    <input type="radio" name="b_view" id="input1" value=""
-                                                        <?= $_loc == "" ? 'checked' : '' ?> />
+                                                    <input type="radio" name="view_yn" id="input1" value=""
+                                                        <?= $view_yn === '' ? 'checked' : '' ?> />
                                                     <span><i class="bx bx-radio-circle-marked"></i></span>
                                                 </div>
                                                 <span class="no-radio-text">전체</span>
                                             </label>
                                             <label for="input2">
                                                 <div class="no-radio-box">
-                                                    <input type="radio" name="b_view" id="input2" value="Y"
-                                                        <?= $_view == "Y" ? 'checked' : '' ?> />
+                                                    <input type="radio" name="view_yn" id="input2" value="Y"
+                                                        <?= $view_yn === 'Y' ? 'checked' : '' ?> />
                                                     <span><i class="bx bx-radio-circle-marked"></i></span>
                                                 </div>
                                                 <span class="no-radio-text">노출</span>
                                             </label>
                                             <label for="input3">
                                                 <div class="no-radio-box">
-                                                    <input type="radio" name="b_view" id="input3" value="N"
-                                                        <?= $_view == "N" ? 'checked' : '' ?> />
+                                                    <input type="radio" name="view_yn" id="input3" value="N"
+                                                        <?= $view_yn === 'N' ? 'checked' : '' ?> />
                                                     <span><i class="bx bx-radio-circle-marked"></i></span>
                                                 </div>
                                                 <span class="no-radio-text">숨김</span>

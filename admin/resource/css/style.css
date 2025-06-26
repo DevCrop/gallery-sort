@@ -3820,45 +3820,6 @@ input[type="file"].note-image-input {
 ========================================================================
 ========================================================================*/
 
-.no-check {
-  position: absolute;
-  top: 1rem;
-  left: 1.2rem;
-  z-index: 1;
-}
-.no-check input[type="checkbox"].no-chk {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.no-check span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: border-color 0.2s ease;
-  background: #fff;
-}
-
-.no-check span i {
-  display: inline-block;
-  transform: scale(0);
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 약간의 오버슈트 느낌 */
-  color: #d3141c;
-}
-
-.no-check input[type="checkbox"].no-chk:checked + span {
-  border-color: #d3141c;
-}
-.no-check input[type="checkbox"].no-chk:checked + span i {
-  transform: scale(1);
-}
-
 /* Container: inline flex of state buttons */
 .no-state-btn-wrap {
   display: flex;

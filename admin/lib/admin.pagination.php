@@ -1,6 +1,8 @@
-<?php if ($Page > 0): 
-    $pageBlock = 5;    
-?>
+<?php
+
+    if ($Page > 0): 
+        $pageBlock = 5;    
+    ?>
 <div class="no-pagination">
     <ul class="no-page-list">
         <?php if ($listCurPage > 1): 

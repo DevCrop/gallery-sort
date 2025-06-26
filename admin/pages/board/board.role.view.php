@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <?php
     include_once "../../../inc/lib/base.class.php";
 
@@ -14,8 +12,8 @@
 
     // 예외처리로 쿼리 실행
     try {
-        $stmt = $connect->prepare("SELECT no, title, skin, regdate, top_banner_image, contents, view_yn, secret_yn, sort_no, list_size, 
-                                    fileattach_yn, fileattach_cnt, comment_yn, depth1, depth2, depth3, lnb_path 
+        $stmt = $connect->prepare("SELECT no, title, skin, regdate,  view_yn, secret_yn, sort_no, list_size, 
+                                    fileattach_yn, fileattach_cnt, comment_yn
                                    FROM nb_board_manage 
                                    WHERE no = :no");
         $stmt->execute([':no' => $no]);
@@ -35,11 +33,12 @@
     include_once "../../inc/admin.js.php";
 ?>
 <style>
-    #board_no-button {
-        display: none;
-    }
+#board_no-button {
+    display: none;
+}
 </style>
 </head>
+
 <body>
     <div class="no-wrap">
         <!-- Header -->
@@ -51,21 +50,21 @@
             <?php include_once "../../inc/admin.drawer.php"; ?>
 
             <!-- Contents -->
-            <form id="frm" name="frm" method="post">    
-            <input type="hidden" name="mode" id="mode">
-            <input type="hidden" name="board_no" id="board_no" value="<?=$no?>">
+            <form id="frm" name="frm" method="post">
+                <input type="hidden" name="mode" id="mode">
+                <input type="hidden" name="board_no" id="board_no" value="<?=$no?>">
                 <section class="no-content">
                     <!-- Page Title -->
                     <div class="no-toolbar">
                         <div class="no-toolbar-container no-flex-stack">
                             <div class="no-page-indicator">
-                            <h1 class="no-page-title"><?=$board_info['title']?> 게시판 권한</h1>
-                            <div class="no-breadcrumb-container">
-                                <ul class="no-breadcrumb-list">
-                                <li class="no-breadcrumb-item"><span>게시판</span></li>
-                                <li class="no-breadcrumb-item"><span>게시판 권한</span></li>
-                                </ul>
-                            </div>
+                                <h1 class="no-page-title"><?=$board_info['title']?> 게시판 권한</h1>
+                                <div class="no-breadcrumb-container">
+                                    <ul class="no-breadcrumb-list">
+                                        <li class="no-breadcrumb-item"><span>게시판</span></li>
+                                        <li class="no-breadcrumb-item"><span>게시판 권한</span></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -80,7 +79,8 @@
                             <div class="no-card-body">
                                 <div class="no-table-responsive no-check-box-center">
                                     <table class="no-table">
-                                        <caption class="no-blind">번호, 게시판 이름, 공지, 제목, 작성자, 작성일, 조회수, 관리로 구성된 게시글 관리표</caption>
+                                        <caption class="no-blind">번호, 게시판 이름, 공지, 제목, 작성자, 작성일, 조회수, 관리로 구성된 게시글 관리표
+                                        </caption>
                                         <thead>
                                             <tr>
                                                 <th scope="col">등급</th>
@@ -102,26 +102,33 @@
                                                 $stmt->execute([':sitekey' => $NO_SITE_UNIQUE_KEY, ':board_no' => $no]);
                                                 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
+                                                if (!$data) {
+                                                    $data = []; // 기본값을 넣어주면 아래 코드에서 오류 없음
+                                                }
+
                                                 $role_checked = [
-                                                    'list' => ($data['role_list'] == "Y") ? "checked" : "",
-                                                    'write' => ($data['role_write'] == "Y") ? "checked" : "",
-                                                    'view' => ($data['role_view'] == "Y") ? "checked" : "",
-                                                    'edit' => ($data['role_edit'] == "Y") ? "checked" : "",
-                                                    'delete' => ($data['role_delete'] == "Y") ? "checked" : "",
-                                                    'comment' => ($data['role_comment'] == "Y") ? "checked" : "",
-                                                ];
+                                                        'list' => ($data['role_list'] ?? "") == "Y" ? "checked" : "",
+                                                        'write' => ($data['role_write'] ?? "") == "Y" ? "checked" : "",
+                                                        'view' => ($data['role_view'] ?? "") == "Y" ? "checked" : "",
+                                                        'edit' => ($data['role_edit'] ?? "") == "Y" ? "checked" : "",
+                                                        'delete' => ($data['role_delete'] ?? "") == "Y" ? "checked" : "",
+                                                        'comment' => ($data['role_comment'] ?? "") == "Y" ? "checked" : "",
+                                                    ];
 
                                             } catch (Exception $e) {
                                                 echo "<p>데이터를 가져오는 중 오류가 발생했습니다: " . $e->getMessage() . "</p>";
                                             }
                                             ?>
                                             <tr>
-                                                <td><span>비회원 <input type="hidden" name="nb_auth_lev_no[]" value="0"></span></td>
+                                                <td><span>비회원 <input type="hidden" name="nb_auth_lev_no[]"
+                                                            value="0"></span></td>
                                                 <?php foreach ($role_checked as $role => $checked): ?>
                                                 <td class="no-check">
                                                     <div class="no-checkbox-form">
                                                         <label for="role_<?=$role?>">
-                                                            <input type="checkbox" name="role_<?=$role?>[0]" class="no-chk" id="role_<?=$role?>" value="Y" <?=$checked?> />
+                                                            <input type="checkbox" name="role_<?=$role?>[0]"
+                                                                class="no-chk" id="role_<?=$role?>" value="Y"
+                                                                <?=$checked?> />
                                                             <span><i class="bx bxs-check-square"></i></span>
                                                         </label>
                                                     </div>
@@ -154,12 +161,15 @@
                                                     ];
                                             ?>
                                             <tr>
-                                                <td><span><?=$level['lev_name']?><input type="hidden" name="nb_auth_lev_no[]" value="<?=$level_no?>"></span></td>
+                                                <td><span><?=$level['lev_name']?><input type="hidden"
+                                                            name="nb_auth_lev_no[]" value="<?=$level_no?>"></span></td>
                                                 <?php foreach ($role_checked as $role => $checked): ?>
                                                 <td class="no-check">
                                                     <div class="no-checkbox-form">
                                                         <label for="role_<?=$role?><?=$index?>">
-                                                            <input type="checkbox" name="role_<?=$role?>[<?=$index?>]" class="no-chk" id="role_<?=$role?><?=$index?>" value="Y" <?=$checked?> />
+                                                            <input type="checkbox" name="role_<?=$role?>[<?=$index?>]"
+                                                                class="no-chk" id="role_<?=$role?><?=$index?>" value="Y"
+                                                                <?=$checked?> />
                                                             <span><i class="bx bxs-check-square"></i></span>
                                                         </label>
                                                     </div>
@@ -178,7 +188,8 @@
 
                                 <div class="no-items-center center">
                                     <a href="./board.role.php" class="no-btn no-btn--big no-btn--normal">목록</a>
-                                    <a href="javascript:void(0);" class="no-btn no-btn--big no-btn--main" onClick="doEditSave();">저장</a>
+                                    <a href="javascript:void(0);" class="no-btn no-btn--big no-btn--main"
+                                        onClick="doEditSave();">저장</a>
                                 </div>
                             </div>
                         </div>
@@ -192,4 +203,5 @@
         <?php include_once "../../inc/admin.footer.php"; ?>
     </div>
 </body>
+
 </html>
